@@ -1,0 +1,963 @@
+/* =========================
+   ROADREADY THEME
+========================= */
+
+:root {
+  color-scheme: light;
+
+  --green: #00704A;
+  --green-dark: #00563A;
+  --yellow: #FFC72C;
+  --red: #C8102E;
+  --text: #22262B;
+  --muted: #626A70;
+  --background: #F7F7F2;
+  --surface: #FFFFFF;
+  --border: #E2E5E1;
+  --footer: #22262B;
+  --success: #00704A;
+  --shadow: 0 12px 32px rgba(25, 40, 32, 0.08);
+}
+
+body.dark {
+  color-scheme: dark;
+
+  --green: #1FA371;
+  --green-dark: #0B5E3F;
+  --yellow: #FFC72C;
+  --red: #F0475A;
+  --text: #F2F2EC;
+  --muted: #ADB5BA;
+  --background: #14171A;
+  --surface: #1E2328;
+  --border: #30373D;
+  --footer: #0D0F11;
+  --success: #1FA371;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   GENERAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  transition: background 0.2s, color 0.2s;
+}
+
+body, button, input {
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  font-family: "Overpass", sans-serif;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+.page {
+  display: none;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 52px 0 72px;
+}
+
+.page.active {
+  display: block;
+}
+
+#login.active {
+  display: flex;
+}
+
+/* =========================
+   HEADER AND NAVIGATION
+========================= */
+
+.site-header {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px max(24px, calc((100vw - 1120px) / 2));
+  background: var(--green);
+  color: #FFFFFF;
+}
+
+.brand,
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Overpass", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.brand {
+  color: #FFFFFF;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-icon,
+.login-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 10px;
+  font-family: "Overpass", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+}
+
+.main-nav a {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.main-nav a:hover {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: transparent;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.button-primary {
+  background: var(--green);
+  color: #FFFFFF;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--green-dark);
+}
+
+.button-yellow {
+  background: var(--yellow);
+  color: #22262B;
+}
+
+.button-yellow:hover {
+  background: #F0B900;
+}
+
+.button-outline {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* =========================
+   HOME HERO
+========================= */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  min-height: 390px;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 64px);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.hero-content {
+  z-index: 1;
+  max-width: 550px;
+}
+
+.hero-content h1 {
+  margin-bottom: 18px;
+}
+
+.hero-content p {
+  max-width: 470px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.hero-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 7px 12px;
+  border-radius: 4px;
+  background: var(--green);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* Highway exit sign */
+
+.highway-sign {
+  position: relative;
+  flex-shrink: 0;
+  width: 265px;
+  padding: 25px;
+  transform: rotate(2deg);
+  border: 5px solid #FFFFFF;
+  border-radius: 5px;
+  outline: 3px solid var(--green-dark);
+  background: var(--green);
+  color: #FFFFFF;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+.sign-top {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.sign-line {
+  height: 2px;
+  margin: 12px 0;
+  background: #FFFFFF;
+}
+
+.sign-main {
+  font-family: "Overpass", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.sign-arrow {
+  margin-top: 10px;
+  font-size: 2rem;
+  text-align: right;
+}
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.content-section {
+  padding-top: 62px;
+}
+
+.section-heading {
+  margin-bottom: 26px;
+}
+
+.section-heading h2 {
+  margin-bottom: 10px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  min-height: 240px;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.green-icon {
+  background: color-mix(in srgb, var(--green) 15%, transparent);
+  color: var(--green);
+}
+
+.yellow-icon {
+  background: color-mix(in srgb, var(--yellow) 22%, transparent);
+  color: #A57900;
+}
+
+body.dark .yellow-icon {
+  color: var(--yellow);
+}
+
+.red-icon {
+  background: color-mix(in srgb, var(--red) 14%, transparent);
+  color: var(--red);
+}
+
+.feature-title {
+  margin-bottom: 8px;
+  font-family: "Overpass", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.feature-description {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+
+.feature-link {
+  margin-top: auto;
+  color: var(--green);
+  font-weight: 800;
+}
+
+/* =========================
+   CAUTION TIP BANNER
+========================= */
+
+.tip-banner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 36px;
+  padding: 24px;
+  border: 1px solid color-mix(in srgb, var(--yellow) 55%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--yellow) 10%, var(--surface));
+}
+
+.tip-banner h3 {
+  margin-bottom: 5px;
+}
+
+.tip-banner p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.caution-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  background: var(--yellow);
+  color: #22262B;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-page {
+  align-items: center;
+  justify-content: center;
+  min-height: 680px;
+}
+
+.login-card {
+  width: min(100%, 460px);
+  padding: 40px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.login-logo {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+  border: 0;
+  border-radius: 15px;
+  background: var(--green);
+  color: #FFFFFF;
+  font-size: 1.8rem;
+}
+
+.login-card h1 {
+  margin-bottom: 10px;
+  font-size: 2.4rem;
+}
+
+.login-card > .muted {
+  margin-bottom: 30px;
+}
+
+.login-card form {
+  text-align: left;
+}
+
+.login-card form > label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.login-card input[type="email"],
+.login-card input[type="password"] {
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.login-card input::placeholder {
+  color: var(--muted);
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 0.82rem;
+}
+
+.remember-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.remember-option input {
+  accent-color: var(--green);
+}
+
+.signup-text {
+  margin: 24px 0 0;
+  font-size: 0.9rem;
+}
+
+.signup-text a {
+  font-weight: 800;
+}
+
+.mini-road {
+  position: relative;
+  height: 55px;
+  margin-top: 32px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #30373D;
+}
+
+.mini-road::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 3px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    to right,
+    #FFFFFF 0 18px,
+    transparent 18px 34px
+  );
+  content: "";
+}
+
+.mini-car {
+  position: absolute;
+  top: 6px;
+  left: 24%;
+  z-index: 1;
+  font-size: 2rem;
+}
+
+/* =========================
+   PRACTICE AND RESULTS
+========================= */
+
+.page-heading {
+  margin-bottom: 32px;
+}
+
+.page-heading h1 {
+  margin-bottom: 12px;
+}
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: start;
+  gap: 24px;
+}
+
+.panel {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.panel-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.status-pill {
+  padding: 6px 12px;
+  border-radius: 30px;
+  background: color-mix(in srgb, var(--green) 15%, transparent);
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.road-progress {
+  position: relative;
+  height: 58px;
+  margin-bottom: 34px;
+  overflow: hidden;
+  border: 5px solid #30373D;
+  border-radius: 7px;
+  background: #30373D;
+}
+
+.road-center-line {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 3px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    to right,
+    #FFFFFF 0 22px,
+    transparent 22px 40px
+  );
+}
+
+.progress-car {
+  position: absolute;
+  top: 2px;
+  left: 8%;
+  font-size: 2rem;
+}
+
+.placeholder-content {
+  padding: 22px 10px 30px;
+  text-align: center;
+}
+
+.placeholder-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--green) 15%, transparent);
+  color: var(--green);
+  font-size: 2rem;
+}
+
+.placeholder-content h2 {
+  font-size: 1.65rem;
+}
+
+.placeholder-answer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.answer-placeholder {
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.practice-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.practice-sidebar {
+  display: grid;
+  gap: 20px;
+}
+
+.tip-card,
+.review-card {
+  padding: 22px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.tip-card {
+  border: 1px solid color-mix(in srgb, var(--yellow) 60%, transparent);
+}
+
+.review-card {
+  border: 1px solid color-mix(in srgb, var(--red) 50%, transparent);
+}
+
+.tip-card h3,
+.review-card h3 {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+.tip-card p,
+.review-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.stop-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  background: var(--red);
+  color: #FFFFFF;
+  clip-path: polygon(
+    30% 0%, 70% 0%, 100% 30%, 100% 70%,
+    70% 100%, 30% 100%, 0% 70%, 0% 30%
+  );
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.result-placeholder h2 {
+  margin-bottom: 10px;
+}
+
+.empty-progress {
+  height: 12px;
+  margin-top: 28px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--border);
+}
+
+.empty-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--green);
+}
+
+.empty-history {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.empty-history span {
+  height: 12px;
+  border-radius: 8px;
+  background: var(--border);
+}
+
+.empty-history span:nth-child(2) {
+  width: 75%;
+}
+
+.empty-history span:nth-child(3) {
+  width: 55%;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  padding: 36px 24px;
+  background: var(--footer);
+  color: #F2F2EC;
+  text-align: center;
+}
+
+.footer-brand {
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.site-footer .brand-icon {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.site-footer p {
+  margin-bottom: 8px;
+}
+
+.footer-small {
+  color: #ADB5BA;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   MOBILE LAYOUT
+========================= */
+
+@media (max-width: 800px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 8px;
+  }
+
+  .main-nav a {
+    font-size: 0.82rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .highway-sign {
+    align-self: center;
+    width: min(265px, 100%);
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: auto;
+  }
+
+  .practice-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    width: calc(100% - 28px);
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .hero {
+    padding: 28px 22px;
+  }
+
+  .login-card {
+    padding: 28px 20px;
+  }
+
+  .login-card h1 {
+    font-size: 2rem;
+  }
+
+  .results-grid,
+  .placeholder-answer-grid,
+  .practice-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+
+  .practice-actions {
+    flex-direction: column;
+  }
+
+  .practice-actions .button {
+    width: 100%;
+  }
+
+  .form-options {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
