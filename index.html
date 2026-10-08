@@ -26,9 +26,8 @@
             <nav class="main-nav" aria-label="Main navigation">
                 <a href="#" onclick="showPage('home'); return false;">Home</a>
                 <a href="#" onclick="showPage('game'); return false;">Practice</a>
-                <a href="#" onclick="showPage('missed'); return false;">Missed Questions</a>
                 <a href="#" onclick="showPage('gameplay'); return false;">Game</a>
-                <a href="#" onclick="showPage('quiz'); return false;">Quiz Questions</a>
+                <a href="#" onclick="showPage('quiz'); return false;">Quiz</a>
                 <a href="#" onclick="showPage('results'); return false;">Results</a>
                 <a href="#" onclick="showPage('login'); return false;">Login</a>
             </nav>
@@ -39,9 +38,14 @@
                 id="theme-toggle"
                 aria-label="Toggle dark mode"
                 title="Toggle dark mode"
-            >
-                🌙
-            </button>
+            <button
+        type="button"
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="Switch to dark mode"
+        title="Switch to dark mode">
+        🌙
+      </button>
         </div>
     </header>
 
@@ -85,451 +89,478 @@
                     <p>Choose a section to explore.</p>
                 </div>
 
-                <div class="feature-grid">
-                    <article class="feature-card">
-                        <div class="feature-icon">📚</div>
-                        <h3>Practice</h3>
-                        <p>Open the practice area and explore its layout.</p>
-                        <button class="text-button" onclick="showPage('game')">
-                            Open Practice →
-                        </button>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">🔁</div>
-                        <h3>Missed Questions</h3>
-                        <p>Visit the review area for questions to revisit.</p>
-                        <button class="text-button" onclick="showPage('missed')">
-                            Review Questions →
-                        </button>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">🚗</div>
-                        <h3>Driving Game</h3>
-                        <p>Explore the page reserved for the driving game.</p>
-                        <button class="text-button" onclick="showPage('gameplay')">
-                            Open Game →
-                        </button>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">📝</div>
-                        <h3>Quiz Questions</h3>
-                        <p>Visit the quiz area where question content will appear.</p>
-                        <button class="text-button" onclick="showPage('quiz')">
-                            Open Quiz →
-                        </button>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Results</h3>
-                        <p>View the placeholder for your results dashboard.</p>
-                        <button class="text-button" onclick="showPage('results')">
-                            View Results →
-                        </button>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-icon">👤</div>
-                        <h3>Your Account</h3>
-                        <p>Open the login page for the account interface.</p>
-                        <button class="text-button" onclick="showPage('login')">
-                            Open Login →
-                        </button>
-                    </article>
-                </div>
-            </section>
-
-            <aside class="caution-box">
-                <div class="caution-icon">!</div>
-                <div>
-                    <h3>Quick reminder</h3>
-                    <p>
-                        This website is currently a frontend prototype.
-                        Interactive driving activities, question content,
-                        saved results, and account features still need to be
-                        connected to the appropriate functionality.
-                    </p>
-                </div>
-            </aside>
-        </section>
-
-        <!-- Practice Page -->
-        <section class="page" id="game">
-            <div class="page-heading">
-                <p class="eyebrow">PRACTICE AREA</p>
-                <h1>Practice</h1>
-                <p>
-                    This is the main practice area. The actual practice
-                    experience can be connected here later.
-                </p>
-            </div>
-
-            <div class="practice-layout">
-                <section class="panel practice-panel">
-                    <div class="panel-heading">
-                        <h2>Practice Session</h2>
-                        <span class="status-label">Coming soon</span>
-                    </div>
-
-                    <div class="placeholder-content">
-                        <div class="placeholder-icon">📘</div>
-                        <h3>Your practice session will appear here</h3>
-                        <p>
-                            This area is reserved for the practice interface
-                            and its future interactive elements.
-                        </p>
-                    </div>
-
-                    <div class="road-progress">
-                        <div class="road-progress-label">
-                            <span>Session progress</span>
-                            <span>Not started</span>
-                        </div>
-                        <div class="road-progress-track">
-                            <div class="road-progress-fill"></div>
-                            <span class="progress-car">🚗</span>
-                        </div>
-                    </div>
-
-                    <div class="panel-actions">
-                        <button class="btn btn-primary" onclick="showPage('quiz')">
-                            Go to Quiz Questions
-                        </button>
-                        <button class="btn btn-secondary" onclick="showPage('missed')">
-                            Review Missed Questions
-                        </button>
-                    </div>
-                </section>
-
-                <aside class="side-panel">
-                    <div class="caution-box">
-                        <div class="caution-icon">!</div>
-                        <div>
-                            <h3>Practice tips</h3>
-                            <p>
-                                This space can display helpful tips and
-                                reminders once the practice content is connected.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="stop-box">
-                        <div class="stop-sign">STOP</div>
-                        <h3>Review area</h3>
-                        <p>
-                            Use the missed questions section to revisit
-                            questions when that feature is available.
-                        </p>
-                        <button class="btn btn-secondary" onclick="showPage('missed')">
-                            Go to Review
-                        </button>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <!-- Missed Questions Page -->
-        <section class="page" id="missed">
-            <div class="page-heading">
-                <p class="eyebrow">REVIEW CENTER</p>
-                <h1>Missed Questions</h1>
-                <p>
-                    A dedicated space for reviewing questions that need
-                    another look.
-                </p>
-            </div>
-
-            <section class="panel">
-                <div class="panel-heading">
-                    <h2>Your Review List</h2>
-                    <span class="status-label">Coming soon</span>
-                </div>
-
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">🔁</div>
-                    <h3>Your missed questions will appear here</h3>
-                    <p>
-                        This area can display saved questions, review cards,
-                        and other review controls after the feature is connected.
-                    </p>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="showPage('game')">
-                        Back to Practice
-                    </button>
-                    <button class="btn btn-secondary" onclick="showPage('quiz')">
-                        Go to Quiz Questions
-                    </button>
-                </div>
-            </section>
-        </section>
-
-        <!-- Driving Game Page -->
-        <section class="page" id="gameplay">
-            <div class="page-heading">
-                <p class="eyebrow">INTERACTIVE EXPERIENCE</p>
-                <h1>Driving Game</h1>
-                <p>
-                    This page is reserved for the driving game interface.
-                </p>
-            </div>
-
-            <section class="panel game-panel">
-                <div class="panel-heading">
-                    <h2>Game Area</h2>
-                    <span class="status-label">Coming soon</span>
-                </div>
-
-                <div class="game-scene">
-                    <div class="game-sky">
-                        <span class="game-cloud cloud-one">☁️</span>
-                        <span class="game-cloud cloud-two">☁️</span>
-                    </div>
-
-                    <div class="game-landscape"></div>
-
-                    <div class="game-road">
-                        <div class="game-road-lines"></div>
-                        <div class="game-player-car">🚗</div>
-                    </div>
-                </div>
-
-                <div class="placeholder-content">
-                    <h3>Your driving game will go here</h3>
-                    <p>
-                        The game interface, controls, and gameplay can be
-                        added to this section later.
-                    </p>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="showPage('game')">
-                        Back to Practice
-                    </button>
-                    <button class="btn btn-secondary" onclick="showPage('results')">
-                        View Results
-                    </button>
-                </div>
-            </section>
-        </section>
-
-        <!-- Quiz Questions Page -->
-        <section class="page" id="quiz">
-            <div class="page-heading">
-                <p class="eyebrow">QUIZ CENTER</p>
-                <h1>Quiz Questions</h1>
-                <p>
-                    This page will hold the quiz question interface when
-                    the question content is ready.
-                </p>
-            </div>
-
-            <section class="panel quiz-panel">
-                <div class="panel-heading">
-                    <h2>Quiz Area</h2>
-                    <span class="status-label">Coming soon</span>
-                </div>
-
-                <div class="quiz-placeholder">
-                    <div class="question-number">QUESTION AREA</div>
-                    <h3>Your quiz questions will appear here</h3>
-                    <p>
-                        This placeholder can be replaced with the question
-                        display, answer choices, and navigation controls.
-                    </p>
-
-                    <div class="answer-placeholder">
-                        <div class="answer-option">Answer option placeholder</div>
-                        <div class="answer-option">Answer option placeholder</div>
-                        <div class="answer-option">Answer option placeholder</div>
-                        <div class="answer-option">Answer option placeholder</div>
-                    </div>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="showPage('game')">
-                        Back to Practice
-                    </button>
-                    <button class="btn btn-secondary" onclick="showPage('missed')">
-                        Missed Questions
-                    </button>
-                </div>
-            </section>
-        </section>
-
-        <!-- Results Page -->
-        <section class="page" id="results">
-            <div class="page-heading">
-                <p class="eyebrow">YOUR PROGRESS</p>
-                <h1>Results</h1>
-                <p>
-                    This page is reserved for displaying results and
-                    progress information once those features are connected.
-                </p>
-            </div>
-
-            <div class="results-grid">
-                <article class="stat-card">
-                    <div class="stat-icon">📈</div>
-                    <h3>Overall Progress</h3>
-                    <p class="stat-value">--</p>
-                    <p>Progress information will appear here.</p>
-                </article>
-
-                <article class="stat-card">
-                    <div class="stat-icon">📝</div>
-                    <h3>Questions Completed</h3>
-                    <p class="stat-value">--</p>
-                    <p>Completion information will appear here.</p>
-                </article>
-
-                <article class="stat-card">
-                    <div class="stat-icon">🔁</div>
-                    <h3>Questions to Review</h3>
-                    <p class="stat-value">--</p>
-                    <p>Review information will appear here.</p>
-                </article>
-            </div>
-
-            <section class="panel">
-                <div class="panel-heading">
-                    <h2>Progress Overview</h2>
-                    <span class="status-label">Coming soon</span>
-                </div>
-
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">📊</div>
-                    <h3>Your results will appear here</h3>
-                    <p>
-                        Charts, summaries, and saved progress can be added
-                        when the results functionality is connected.
-                    </p>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="btn btn-primary" onclick="showPage('game')">
-                        Return to Practice
-                    </button>
-                    <button class="btn btn-secondary" onclick="showPage('missed')">
-                        Review Missed Questions
-                    </button>
-                </div>
-            </section>
-        </section>
-
-        <!-- Login Page -->
-        <section class="page" id="login">
-            <div class="login-layout">
-                <div class="login-intro">
-                    <p class="eyebrow">WELCOME TO ROADREADY</p>
-                    <h1>Ready to get back on the road?</h1>
-                    <p>
-                        Sign in to the account interface. Account
-                        authentication has not been connected yet.
-                    </p>
-
-                    <div class="login-road">
-                        <div class="login-road-line"></div>
-                        <span class="login-road-car">🚗</span>
-                    </div>
-                </div>
-
-                <div class="login-card">
-                    <div class="login-card-heading">
-                        <h2>Welcome back</h2>
-                        <p>Enter your details to continue.</p>
-                    </div>
-
-                    <form id="login-form">
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="you@example.com"
-                                autocomplete="email"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required
-                            >
-                        </div>
-
-                        <div class="login-options">
-                            <label class="remember-option">
-                                <input type="checkbox" id="remember-me" name="remember-me">
-                                <span>Remember me</span>
-                            </label>
-
-                            <button
-                                type="button"
-                                class="text-button"
-                                onclick="alert('Password reset is not connected yet.')"
-                            >
-                                Forgot password?
-                            </button>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary login-submit">
-                            Sign In
-                        </button>
-                    </form>
-
-                    <div class="login-divider">
-                        <span>NEW TO ROADREADY?</span>
-                    </div>
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary login-submit"
-                        onclick="alert('Account creation is not connected yet.')"
-                    >
-                        Create Account
-                    </button>
-
-                    <p class="login-disclaimer">
-                        This is a frontend demonstration. Do not enter a real
-                        password because authentication is not connected.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <a href="#" class="footer-brand" onclick="showPage('home'); return false;">
-                🚗 RoadReady
-            </a>
-
-            <p>Built to make your driving practice experience easier to navigate.</p>
-
-            <div class="footer-links">
-                <a href="#" onclick="showPage('home'); return false;">Home</a>
-                <a href="#" onclick="showPage('game'); return false;">Practice</a>
-                <a href="#" onclick="showPage('quiz'); return false;">Quiz</a>
-                <a href="#" onclick="showPage('login'); return false;">Login</a>
-            </div>
-
-            <p class="footer-note">
-                © 2026 RoadReady. Frontend prototype.
-            </p>
+                 <!-- Visitors can preview the website before signing in. -->
+      <div class="preview-banner home-preview">
+        <div>
+          <span class="preview-tag">EXPLORE FIRST</span>
+          <h2>Take a look around</h2>
+          <p>
+            Click any tab to preview that section.
+            You will only be asked to sign in when you press Continue.
+          </p>
         </div>
-    </footer>
+        <button class="btn btn-primary" onclick="continueTo('home')">
+          Continue
+        </button>
+      </div>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">YOUR DASHBOARD</p>
+          <h2>Where would you like to go?</h2>
+          <p>Choose a section to explore.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Practice</h3>
+            <p>Practice and revisit questions you want to work on again.</p>
+            <button class="text-button" onclick="showPage('game')">
+              Open Practice →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🚗</div>
+            <h3>Driving Game</h3>
+            <p>Explore the Driving Game.</p>
+            <button class="text-button" onclick="showPage('gameplay')">
+              Open Game →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Quiz</h3>
+            <p>Visit the quiz area where question content will appear.</p>
+            <button class="text-button" onclick="showPage('quiz')">
+              Open Quiz →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Results</h3>
+            <p>View the placeholder for your results dashboard.</p>
+            <button class="text-button" onclick="showPage('results')">
+              View Results →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">👤</div>
+            <h3>Your Account</h3>
+            <p>Open the login page for the account interface.</p>
+            <button class="text-button" onclick="showPage('login')">
+              Open Login →
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <aside class="caution-box">
+        <div class="caution-icon">!</div>
+        <div>
+          <h3>Quick reminder</h3>
+          <p>
+            Interactive driving activities, question content, saved results,
+            and account features will be added later.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Practice  -->
+    <section class="page" id="game">
+      <div class="page-heading">
+        <p class="eyebrow">PRACTICE AREA</p>
+        <h1>Practice</h1>
+        <p>
+          Use this area to practice and review questions you want to revisit.
+          The question content can be connected here later.
+        </p>
+      </div>
+
+      <!--   Preview and Continue button. -->
+      <div class="preview-banner">
+        <div>
+          <span class="preview-tag">PAGE PREVIEW</span>
+          <h2>Preview Practice</h2>
+          <p>
+            Explore how practice sessions and review of missed questions
+            will be organized. The actual questions are not connected yet.
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="continueTo('game')">
+          Continue to Practice
+        </button>
+      </div>
+
+      <div class="practice-layout">
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Practice and Review</h2>
+            <span class="status-label">Coming soon</span>
+          </div>
+
+          <div class="placeholder-content">
+            <div class="placeholder-icon">📘</div>
+            <h3>Your practice questions will appear here</h3>
+            <p>
+              This area can hold new practice questions and questions you missed,
+              so you can review everything in one place.
+            </p>
+          </div>
+
+          <div class="road-progress">
+            <div class="road-progress-label">
+              <span>Session progress</span>
+              <span>Not started</span>
+            </div>
+            <div class="road-progress-track">
+              <div class="road-progress-fill"></div>
+              <span class="progress-car">🚗</span>
+            </div>
+          </div>
+
+          <div class="panel-actions">
+            <button class="btn btn-primary" onclick="showPage('quiz')">
+              Go to Quiz
+            </button>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="caution-box">
+            <div class="caution-icon">!</div>
+            <div>
+              <h3>Practice tips</h3>
+              <p>
+                This space can display helpful tips and reminders
+                once the practice content is connected.
+              </p>
+            </div>
+          </div>
+
+          <div class="stop-box">
+            <div class="stop-sign">STOP</div>
+            <h3>Review questions</h3>
+            <p>
+              Questions you want to revisit can appear alongside
+              your regular practice here.
+            </p>
+            <button class="btn btn-secondary" onclick="showPage('quiz')">
+              Open Quiz
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- DRIVING GAME PAGE -->
+    <section class="page" id="gameplay">
+      <div class="page-heading">
+        <p class="eyebrow">INTERACTIVE EXPERIENCE</p>
+        <h1>Driving Game</h1>
+        <p>This page is reserved for the driving game interface.</p>
+      </div>
+
+      <!-- Driving Game Scene and controls blah blah -->
+      <div class="preview-banner">
+        <div>
+          <span class="preview-tag">PAGE PREVIEW</span>
+          <h2>Preview the Driving Game</h2>
+          <p>
+            See where the driving scene and game controls will appear.
+            Gameplay is a placeholder until the game is built.
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="continueTo('gameplay')">
+          Continue to Game
+        </button>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Game Area</h2>
+          <span class="status-label">Coming soon</span>
+        </div>
+
+        <div class="game-scene">
+          <span class="game-cloud cloud-one">☁️</span>
+          <span class="game-cloud cloud-two">☁️</span>
+          <div class="game-landscape"></div>
+          <div class="game-road">
+            <div class="game-road-lines"></div>
+            <div class="game-player-car">🚗</div>
+          </div>
+        </div>
+
+        <div class="placeholder-content">
+          <h3>The driving game will go here</h3>
+          <p>
+            The game interface, controls, and gameplay can be added
+            to this section later.
+          </p>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-primary" onclick="showPage('game')">
+            Back to Practice
+          </button>
+          <button class="btn btn-secondary" onclick="showPage('results')">
+            View Results
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <!-- Quiz Page -->
+    <section class="page" id="quiz">
+      <div class="page-heading">
+        <p class="eyebrow">QUIZ CENTER</p>
+        <h1>Quiz</h1>
+        <p>
+          This page will hold the quiz question interface
+          when the question content is ready.
+        </p>
+      </div>
+
+      <!-- Quiz preview and Continue sign-in checkpoint. -->
+      <div class="preview-banner">
+        <div>
+          <span class="preview-tag">PAGE PREVIEW</span>
+          <h2>Preview the Quiz</h2>
+          <p>
+            Explore your quiz area, which includes a questions
+            and answer choices.
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="continueTo('quiz')">
+          Continue to Quiz
+        </button>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Quiz Area</h2>
+          <span class="status-label">Coming soon</span>
+        </div>
+
+        <div class="quiz-placeholder">
+          <div class="question-number">QUESTION AREA</div>
+          <h3>Your quiz questions will appear here</h3>
+          <p>
+            This page is the question display,
+            answer choices, and navigation controls.
+          </p>
+
+          <div class="answer-placeholder">
+            <div class="answer-option">Answer option placeholder</div>
+            <div class="answer-option">Answer option placeholder</div>
+            <div class="answer-option">Answer option placeholder</div>
+            <div class="answer-option">Answer option placeholder</div>
+          </div>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-primary" onclick="showPage('game')">
+            Back to Practice
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <!-- RESULTS PAGE -->
+    <section class="page" id="results">
+      <div class="page-heading">
+        <p class="eyebrow">YOUR PROGRESS</p>
+        <h1>Results</h1>
+        <p>
+          This page will display results and progress
+          information.
+        </p>
+      </div>
+
+      <!-- Results preview and Continue sign-in checkpoint. -->
+      <div class="preview-banner">
+        <div>
+          <span class="preview-tag">PAGE PREVIEW</span>
+          <h2>Preview Your Results</h2>
+          <p>
+            See the planned dashboard for progress, completed questions,
+            and items to review. Results will appear here.
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="continueTo('results')">
+          Continue to Results
+        </button>
+      </div>
+
+      <div class="results-grid">
+        <article class="stat-card">
+          <div class="stat-icon">📈</div>
+          <h3>Overall Progress</h3>
+          <p class="stat-value">--</p>
+          <p>Progress information will appear here.</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon">📝</div>
+          <h3>Questions Completed</h3>
+          <p class="stat-value">--</p>
+          <p>Completion information will appear here.</p>
+        </article>
+
+         <article class="stat-card">
+          <div class="stat-icon">🔁</div>
+          <h3>Questions to Review</h3>
+          <p class="stat-value">--</p>
+          <p>Review information will appear here.</p>
+        </article>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Progress Overview</h2>
+          <span class="status-label">Coming soon</span>
+        </div>
+
+        <div class="placeholder-content">
+          <div class="placeholder-icon">📊</div>
+          <h3>Your results will appear here</h3>
+          <p>
+            Charts, summaries, and saved progress can be added
+            later.
+          </p>
+        </div>
+
+        <div class="panel-actions">
+          <button class="btn btn-primary" onclick="showPage('game')">
+            Return to Practice
+          </button>
+          <button class="btn btn-secondary" onclick="showPage('game')">
+            Review Practice
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <!-- Login is accessible from its tab, but is not forced on page load. -->
+    <section class="page" id="login">
+      <div class="login-layout">
+        <div class="login-intro">
+          <p class="eyebrow">WELCOME TO ROADREADY</p>
+          <h1>Ready to get back on the road?</h1>
+          <p>
+            Sign in to the account interface.            
+          </p>
+
+          <div class="login-road">
+            <div class="login-road-line"></div>
+            <span class="login-road-car">🚗</span>
+          </div>
+        </div>
+
+        <div class="login-card">
+          <div class="login-card-heading">
+            <h2>Welcome back</h2>
+            <p>
+              You can preview the pages first.
+              Sign in only when you choose to continue.
+            </p>
+            <p
+              id="login-message"
+              role="status"
+              style="margin-top:10px; color:var(--red); font-weight:700">
+              You can browse the previews without signing in.
+            </p>
+          </div>
+
+          <form id="login-form">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required>
+            </div>
+
+            <div class="login-options">
+              <label class="remember-option">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <span>Remember me</span>
+              </label>
+
+              <button
+                type="button"
+                class="text-button"
+                onclick="alert('Password reset is not connected yet.')">
+                Forgot password?
+              </button>
+            </div>
+
+            <button type="submit" class="btn btn-primary login-submit">
+              Sign In
+            </button>
+          </form>
+
+          <div class="login-divider">
+            <span>NEW TO ROADREADY?</span>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-secondary login-submit"
+            onclick="alert('Account creation is not connected yet.')">
+            Create Account
+          </button>
+
+          <p class="login-disclaimer">
+            Frontend preview only: any email and password will continue to the site.            
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <a href="#" class="footer-brand" onclick="showPage('home'); return false">
+        🚗 RoadReady
+      </a>
+      <p>Built to make your driving practice experience easier to navigate.</p>
+
+      <div class="footer-links">
+        <a href="#" onclick="showPage('home'); return false">Home</a>
+        <a href="#" onclick="showPage('game'); return false">Practice</a>
+        <a href="#" onclick="showPage('quiz'); return false">Quiz</a>
+        <a href="#" onclick="showPage('login'); return false">Login</a>
+      </div>
+
+      <p class="footer-note">© 2026 RoadReady. Frontend prototype.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
+
+        
+
+
