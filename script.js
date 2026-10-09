@@ -1,8 +1,19 @@
+let loggedIn = false;
+let pageAfterLogin = 'home';
+
+
 function showPage(pageName) {
     const selectedPage = document.getElementById(pageName);
 
     if (!selectedPage || !selectedPage.classList.contains('page')) {
         return;
+    }
+    
+    const protectedPages = ['game', 'gameplay', 'quiz', 'results'];
+
+    if (protectedPages.includes(pageName) && !loggedIn) {
+        pageAfterLogin = pageName;
+        pageName = 'login';
     }
 
     const pages = document.querySelectorAll('.page');
@@ -11,7 +22,7 @@ function showPage(pageName) {
         page.classList.remove('active');
     });
 
-    selectedPage.classList.add('active');
+    document.getElementById(pageName).classList.add('active');
 
     window.scrollTo({
         top: 0,
@@ -20,9 +31,7 @@ function showPage(pageName) {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
-
     
     const themeToggle = document.getElementById('theme-toggle');
 
@@ -40,8 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
-    
+   
     const quizButton = document.getElementById('submit-quiz');
 
     if (quizButton) {
@@ -49,7 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         quizButton.onclick = null;
 
         quizButton.addEventListener('click', function() {
-            const answer = document.querySelector('input[name="q1"]:checked');
+            const answer = document.querySelector(
+                'input[name="q1"]:checked'
+            );
 
             if (!answer) {
                 alert('Please select an answer first.');
@@ -57,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const resultValues = document.querySelectorAll('.stat-value');
-            const resultMessages = document.querySelectorAll('.stat-card p:last-child');
+            const resultMessages = document.querySelectorAll(
+                '.stat-card p:last-child'
+            );
 
             if (answer.value === 'b') {
                
@@ -66,9 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultValues[2].textContent = '0';
 
                 if (resultMessages.length >= 3) {
-                    resultMessages[0].textContent = 'Great job! You got the question right.';
-                    resultMessages[1].textContent = 'You completed 1 question.';
-                    resultMessages[2].textContent = 'No questions need reviewing.';
+                    resultMessages[0].textContent =
+                        'Great job! You got the question right.';
+                    resultMessages[1].textContent =
+                        'You completed 1 question.';
+                    resultMessages[2].textContent =
+                        'No questions need reviewing.';
                 }
 
                 alert('Correct! A red traffic light means stop.');
@@ -79,9 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultValues[2].textContent = '1';
 
                 if (resultMessages.length >= 3) {
-                    resultMessages[0].textContent = 'Keep practicing to improve your score.';
-                    resultMessages[1].textContent = 'You completed 1 question.';
-                    resultMessages[2].textContent = 'Review the red traffic light question.';
+                    resultMessages[0].textContent =
+                        'Keep practicing to improve your score.';
+                    resultMessages[1].textContent =
+                        'You completed 1 question.';
+                    resultMessages[2].textContent =
+                        'Review the red traffic light question.';
                 }
 
                 alert('Incorrect. The correct answer is Stop.');
@@ -90,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showPage('results');
         });
     }
+
     
     const loginForm = document.getElementById('login-form');
     const loginMessage = document.getElementById('login-message');
@@ -101,11 +120,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!loginForm.reportValidity()) {
                 return;
             }
+            
+            loggedIn = true;
 
             if (loginMessage) {
                 loginMessage.textContent =
-                    'Demo sign-in successful. Real account login is not connected.';
+                    'Demo login successful! You can now continue.';
             }
+            
+            showPage(pageAfterLogin);
         });
     }
 
