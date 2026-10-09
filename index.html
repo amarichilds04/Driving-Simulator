@@ -2,172 +2,341 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale1.0">
+    <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+    
     <title>RoadReady | Driving Practice</title>
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
-  <header class="site-header">
-      <div class="header-content">
-          <a href="#" class="brand" data-page="home">
+    
+<body>
+    
+    <header class="site-header">
+        <div class="header-content">
+            <a href="#" class="brand" onlick="showPage('home'); return false;">
               <span class="brand-icon">🚗</span>
               <span>RoadReady</span>
           </a>
 
           <nav class="main-nav" aria-label="Main navigation">
-              <a href="#" data-page="home">Home</a>
-              <a href="#" data-page="game">Practice</a>
-              <a href="#" data-page="gameplay">Game</a>
-              <a href="#" data-page="quiz">Quiz</a>
-              <a href="#" data-page="results">Results</a>
-              <a href="#" data-page="login">Login</a>
+              <a href="#" onclick="showPage('home'); return false;">Home</a>
+              <a href="#" onclick="showPage('game'); return false;">Practice</a>
+              <a href="#" onclick="showPage('gameplay'); return false">Game</a>
+              <a href="#" onclick="showPage('quiz'); return false">Quiz</a>
+              <a href="#" onclick="showPage('results'); return false">Results</a>
+              <a href="#" onclick="showPage('login'); return false">Login</a>
           </nav>
 
-          <button type="button: id="theme-toggle"
-                  class="theme-toggle">
+          <button type="button" class="theme-toggle" id="theme-toggle"
+              aria-label="Toggle dark mode">    
               🌙
           </button>
       </div>
   </header>
 
-  <section class="page active" id="home">
-      <div class="hero">
-          <div class="hero-content">
-              <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
-              <h1>Get ready to hit the road</h1>
+  <main>
 
-              <p>
-                  Practice driving knowledge and prepare
-                  for your driving test.
-              </p>
+       <section class="page active" id="home">
+           <div class="hero">
+               <div class="hero-content">
+                   <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+              
+                   <h1>Get ready to hit the road</h1>
+              
+                   <p>                 
+                       Practice driving rules, test your knowledge, and prepare                  
+                       for your driving test.              
+                   </p>
+              
+                   <div class="hero-actions">                  
+                       <button class="btn btn-primary"
+                          onclick="showPage('game')">
+                      Start Practicing                  
+                       </button>              
+                   </div>          
+               </div>
 
-              <div class="hero-actions">
-                  <button class="btn btn-primary"
-                          data-page="game">
-                      Start Practicing
-                  </button>
-              </div>
-          </div>
-      </div>
-  </section>
+               <div class="hero-card">
+                    <div class="road-illustration">
+                        <div class="road-lane"></div>
+                        <div class="road-car">🚙</div>
+                    </div>
 
-  <section class="page" id="game">
-      <div class="page-heading">
-          <p class="eyebrow">PRACTICE AREA</p>
-          <h1>Practice</h1>
-          <p>
-              Review driving questions and prepare
-              for your test.
-          </p>
-      </div>
+                    <h2>Learn before you drive</h2>
+                    <p>Choose a section to get started.</p>
+                </div>
+            </div>
 
-      <div class="panel">
-          <h2>Practice and Review</h2>
+            <section class="content-section">
+                <div class="section-heading">
+                    <h2>Explore RoadReady</h2>
+                    <p>Choose what you want to work on.</p>
+                </div>
 
-          <p>
-              Your practice questions will appear here.
-          </p>
+                <div class="feature-grid">
 
-          <button class="btn btn-primary"
-                  data-page="quiz">
-              Go to Quiz
-          </button>
-      </div>
-  </section>
+                    <article class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Practice</h3>
+                        <p>Review driving rules and questions.</p>
 
-  <section class="page" id="gameplay">
-      <div class="page-heading">
-          <p class="eyebrow">DRIVING GAME</p>
-          <h1>Driving Game</h1>
-          <p>
-              Learn driving rules through an interactive activity.
-          </p>
-      </div>
+                        <button class="text-button"
+                            onclick="showPage('game')">
+                            Open Practice →
+                        </button>
+                    </article>
 
-      <div class="panel">
-          <h2>Coming Soon</h2>
-          <p>
-              The driving game will be added here.
-          </p>
-          <button class="btn btn-primary"
-                  data-page="home">
-              Back to Home
-          </button>
-      </div>
-  </section>
+                    <article class="feature-card">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Driving Game</h3>
+                        <p>Explore the driving game section.</p>
 
-  <section class="page" id="quiz">
-      <div class="page-heading">
-          <h1>Driving Knowledge Quiz</h1>
-          <p>Test your knowledge of road safety</p>
-      </div>
+                        <button class="text-button"
+                            onclick="showPage('gameplay')">
+                            Open Game →
+                        </button>
+                    </article>
 
-      <div class="panel">
-          <h2>What does a red traffic light mean?</h2>
+                    <article class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Quiz</h3>
+                        <p>Test what you know about driving.</p>
 
-          <label>
-              <input type="radio" name="q1" value="a">
-              Speed up         
-          </label>
+                        <button class="text-button"
+                            onclick="showPage('quiz')">
+                            Open Quiz →
+                        </button>
+                    </article>
 
-          <label>
-              <input type="radio" name="q1" value="b">
-              Stop
-          </label>
+                    <article class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Results</h3>
+                        <p>Check your practice progress.</p>
 
-          <label>
-              <input type="radio" name="q1" value="c">
-              Turn without stopping
-          </label>
+                        <button class="text-button"
+                            onclick="showPage('results')">
+                            View Results →
+                        </button>
+                    </article>
+                     </div>
+            </section>
 
-          <button class="btn btn-primary"
-                  data-page="results">
-              View Results
-          </button>
-      </div>
-  </section>
+        </section>
+    
+        <section class="page" id="game">
 
-  <section class="page" id="results">
-      <div class="page-heading">
-          <h1>Your Results</h1>
-          <p>Review your progress here.</p>
-      </div>
+            <div class="page-heading">
+                <h1>Practice</h1>
+                <p>Review driving questions and prepare for your test.</p>
+            </div>
 
-      <div class="panel">
-          <h2>Quiz Score</h2>
-        <p>Your score will appear here after you finish the quiz.</p>
+            <section class="panel">
+                <h2>Practice Questions</h2>
 
-        <button class="btn btn-primary"
-                data-page"game">
-            Practice Again
-        </button>
-      </div>
-  </section>
+                <p>
+                    Practice questions and missed questions will
+                    be available in this section.
+                </p>
 
-  <section class="page" id="login">
-      <div class="page-heading">
-          <h1>Welcome to RoadReady</h1>
-          <p>Sign in to continue</p>
-      </div>
+                <div class="road-progress">
+                    <div class="road-progress-label">
+                        <span>Session Progress</span>
+                        <span>Not started</span>
+                    </div>
 
-      <div class="panel">
-          <form id-"login-form">
-              <label for="email">Email</label>
-              <input type="email" id="email" required>
+                    <div class="road-progress-track">
+                        <div class="road-progress-fill"></div>
+                    </div>
+                </div>
 
-              <label for="password">Password</label>
-              <input type="password" id="password" required
+                <button class="btn btn-primary"
+                    onclick="showPage('quiz')">
+                    Go to Quiz
+                </button>
+            </section>
 
-              <button class="btn btn-primary" type="submit">
-                  Sign In
-              </button>  
-          </form>
+        </section>
+        
+        <section class="page" id="gameplay">
 
-          <p id="login-message"></p>
-      </div>
-  </section>
-      
-          
+            <div class="page-heading">
+                <h1>Driving Game</h1>
+                <p>Practice driving skills in a game environment.</p>
+            </div>
+
+            <section class="panel">
+                <h2>Game Area</h2>
+
+                <div class="game-scene">
+                    <span class="game-cloud cloud-one">☁️</span>
+                    <span class="game-cloud cloud-two">☁️</span>
+
+                    <div class="game-landscape"></div>
+
+                    <div class="game-road">
+                        <div class="game-road-lines"></div>
+                        <div class="game-player-car">🚗</div>
+                    </div>
+                </div>
+
+                <h3>Coming Soon</h3>
+                <p>
+                    The driving game is not available yet.
+                </p>
+
+                <button class="btn btn-primary"
+                    onclick="showPage('game')">
+                    Back to Practice
+                </button>
+            </section>
+
+        </section>
+    
+        <section class="page" id="quiz">
+
+            <div class="page-heading">
+                <h1>Driving Quiz</h1>
+                <p>Test your knowledge of road safety.</p>
+            </div>
+
+            <section class="panel">
+                <h2>What does a red traffic light mean?</h2>
+
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="a">
+                    Speed up
+                </label>
+
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="b">
+                    Stop
+                </label>
+
+                <label class="answer-option">
+                    <input type="radio" name="q1" value="c">
+                    Turn without stopping
+                </label>
+
+                <button class="btn btn-primary" id="submit-quiz"
+                    onclick="showPage('results')">
+                    View Results
+                </button>
+            </section>
+
+        </section>
+
+        <section class="page" id="results">
+
+            <div class="page-heading">
+                <h1>Your Results</h1>
+                <p>Check your progress after practicing.</p>
+            </div>
+
+            <div class="results-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <h3>Overall Progress</h3>
+                    <p class="stat-value">--</p>
+                    <p>Your progress will appear here.</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <h3>Questions Completed</h3>
+                    <p class="stat-value">--</p>
+                    <p>Your completed questions will appear here.</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon">🔁</div>
+                    <h3>Questions to Review</h3>
+                    <p class="stat-value">--</p>
+                    <p>Questions to review will appear here.</p>
+                </article>
+
+            </div>
+
+            <section class="panel">
+                <h2>Progress Overview</h2>
+
+                <p>
+                    Your score and progress will appear here
+                    when the results feature is added.
+                </p>
+
+                <button class="btn btn-primary"
+                    onclick="showPage('game')">
+                    Practice Again
+                </button>
+            </section>
+
+        </section>
+
+
+        <!-- Login Page -->
+        <section class="page" id="login">
+
+            <div class="page-heading">
+                <h1>Welcome to RoadReady</h1>
+                <p>Sign in to continue.</p>
+            </div>
+
+            <section class="panel">
+
+                <form id="login-form">
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Sign In
+                    </button>
+
+                </form>
+
+                <p id="login-message" role="status"></p>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+
+            <p>🚗 RoadReady</p>
+
+            <p>Practice today for a safer drive tomorrow.</p>
+
+            <p class="footer-note">© 2026 RoadReady</p>
+
+        </div>
+    </footer>
+
+</body>
+</html>
+
       
