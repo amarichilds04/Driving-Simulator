@@ -1,7 +1,5 @@
-
-/* Basic page styles */
 :root {
-    --background: #f5f7fb;
+    --background: #eef2f9;
     --surface: #ffffff;
     --text: #202938;
     --muted: #647084;
@@ -14,7 +12,7 @@
     --red-text: #9e202a;
 }
 
-* {
+  {
     box-sizing: border-box;
 }
 
