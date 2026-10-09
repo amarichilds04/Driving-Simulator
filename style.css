@@ -9,7 +9,7 @@
   --surface: #FFF;
   --border: #E2E5E1;
   --footer: #22262B;
-  --shadow: 0 12px 32px rgba(24,45,35,.08);
+  --shadow: 0 12px 32px rgba(24, 45, 35, .08);
 }
 
 body.dark {
@@ -23,7 +23,7 @@ body.dark {
   --surface: #1E2328;
   --border: #30383E;
   --footer: #0D0F11;
-  --shadow: 0 12px 32px rgba(0,0,0,.2);
+  --shadow: 0 12px 32px rgba(0, 0, 0, .2);
 }
 
 * {
@@ -83,6 +83,7 @@ h3 {
 p {
   margin: 0 0 1rem;
 }
+
 
 .site-header {
   position: sticky;
@@ -154,6 +155,7 @@ p {
   background: #ffffff25;
 }
 
+
 main {
   max-width: 1240px;
   min-height: 65vh;
@@ -175,6 +177,7 @@ main {
     opacity: .4;
     transform: translateY(4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -188,6 +191,7 @@ main {
   font-size: .76rem;
   margin-bottom: .7rem;
 }
+
 
 .hero {
   display: grid;
@@ -248,6 +252,7 @@ main {
   margin-bottom: 0;
 }
 
+
 .road-illustration {
   height: 165px;
   background: #C8E5D5;
@@ -289,6 +294,7 @@ body.dark .login-road {
   font-size: 2.6rem;
   filter: drop-shadow(0 5px 3px #0003);
 }
+
 
 .content-section {
   padding: 24px 0 38px;
@@ -415,6 +421,7 @@ body.dark .login-road {
   font-weight: 800;
 }
 
+
 .practice-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(250px, .8fr);
@@ -440,6 +447,7 @@ body.dark .login-road {
   margin: 0 auto;
   color: var(--muted);
 }
+
 
 .road-progress {
   margin-top: 26px;
@@ -495,6 +503,7 @@ body.dark .login-road {
   margin: 0;
 }
 
+
 .stop-box {
   padding: 22px;
   background: var(--surface);
@@ -532,6 +541,8 @@ body.dark .login-road {
 .stop-box .btn {
   width: 100%;
 }
+
+/* Driving game */
 
 .game-scene {
   position: relative;
@@ -598,6 +609,7 @@ body.dark .game-scene {
   font-size: 2.5rem;
 }
 
+
 .quiz-placeholder {
   text-align: center;
   padding: 20px 0;
@@ -632,6 +644,37 @@ body.dark .game-scene {
   background: var(--background);
 }
 
+
+#quiz input[type="radio"] {
+  margin-right: 8px;
+  accent-color: var(--green);
+}
+
+#quiz label {
+  display: block;
+  padding: 12px;
+  margin: 10px 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#quiz label:hover {
+  border-color: var(--green);
+}
+
+#quiz label:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+#quiz button {
+  margin-top: 12px;
+}
+
+
 .results-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -650,6 +693,7 @@ body.dark .game-scene {
 .stat-card p:last-child {
   margin-bottom: 0;
 }
+
 
 .login-layout {
   display: grid;
@@ -781,6 +825,7 @@ body.dark .game-scene {
   color: var(--muted);
 }
 
+
 .site-footer {
   color: #F2F2EC;
   background: var(--footer);
@@ -826,6 +871,48 @@ body.dark .game-scene {
 .footer-note {
   font-size: .78rem;
   margin-bottom: 0;
+}
+
+
+.preview-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 24px;
+  margin: 0 0 28px;
+  background: color-mix(in srgb, var(--green) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--green) 35%, var(--border));
+  border-left: 5px solid var(--green);
+  border-radius: 14px;
+}
+
+.preview-banner h2 {
+  margin: 6px 0 7px;
+  font-size: 1.2rem;
+}
+
+.preview-banner p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 720px;
+}
+
+.preview-tag {
+  display: inline-block;
+  color: var(--green);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.preview-banner .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.home-preview {
+  margin: 0 0 28px;
 }
 
 @media (max-width: 1000px) {
@@ -909,50 +996,7 @@ body.dark .game-scene {
   .hero-actions .btn {
     width: 100%;
   }
-}
 
-.preview-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 24px;
-  margin: 0 0 28px;
-  background: color-mix(in srgb, var(--green) 8%, var(--surface));
-  border: 1px solid color-mix(in srgb, var(--green) 35%, var(--border));
-  border-left: 5px solid var(--green);
-  border-radius: 14px;
-}
-
-.preview-banner h2 {
-  margin: 6px 0 7px;
-  font-size: 1.2rem;
-}
-
-.preview-banner p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 720px;
-}
-
-.preview-tag {
-  display: inline-block;
-  color: var(--green);
-  font-size: .7rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-}
-
-.preview-banner .btn {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-.home-preview {
-  margin: 0 0 28px;
-}
-
-@media (max-width: 720px) {
   .preview-banner {
     align-items: stretch;
     flex-direction: column;
