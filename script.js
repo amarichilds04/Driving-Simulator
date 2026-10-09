@@ -4,7 +4,7 @@ let nextPage = "home";
 function showPage(pageId) {
     let selectedPage = document.getElementById(pageId);
 
-    If (selectedPage == null) {
+    if (selectedPage == null) {
         return;
     }
 
@@ -28,7 +28,7 @@ function continueTo(pageId) {
     }
 }
 
-document.addEventListener("click:, function(event) {
+document.addEventListener("click", function(event) {
     let button = event.target.closest("[date-page], [data-continue]");
 
     if (button.tagName == "A") {
