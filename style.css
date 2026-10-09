@@ -561,3 +561,7 @@ body.dark .btn-primary {
         padding: 18px;
     }
 }
+
+body {
+    background-color: hotpink !important;
+}
