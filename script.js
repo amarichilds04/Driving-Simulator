@@ -1,32 +1,43 @@
-// RoadReady frontend interactions.
 
-//  Visitors can preview every page without signing in.
+/* RoadReady frontend interactions */
+
+// Demo sign-in only. Nothing is sent to a server or saved.
 let loggedIn = false;
 
-//  Remember which section the visitor wants to continue to.
+// Remember the section the visitor wants to continue to.
 let pageAfterLogin = 'home';
 
-//  Navigation changes pages without forcing a login.
+// Navigate between pages.
 function showPage(pageName) {
+  const selectedPage = document.getElementById(pageName);
+
+  if (!selectedPage || !selectedPage.classList.contains('page')) {
+    return;
+  }
+
   document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
   });
 
-  const selectedPage = document.getElementById(pageName);
+  selectedPage.classList.add('active');
 
-  if (selectedPage) {
-    selectedPage.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 }
 
-//  Login is requested only when Continue is clicked.
+// Ask visitors to sign in only when they click Continue.
 function continueTo(pageName) {
+  const destination = document.getElementById(pageName);
+
+  if (!destination || !destination.classList.contains('page')) {
+    return;
+  }
+
   if (!loggedIn) {
-    // Remember the section the visitor selected.
     pageAfterLogin = pageName;
 
-    // Explain why login is being shown.
     const message = document.getElementById('login-message');
 
     if (message) {
@@ -34,23 +45,14 @@ function continueTo(pageName) {
         'Please sign in to continue to ' + pageLabel(pageName) + '.';
     }
 
-    // Send the visitor to the login screen.
     showPage('login');
     return;
-  }
-
-  // If already signed in for this demo, continue to the selected page.
-  const message = document.getElementById('login-message');
-
-  if (message) {
-    message.textContent =
-      'You are signed in for this preview. Real account authentication is not connected.';
   }
 
   showPage(pageName);
 }
 
-//  Provide readable names for the login message.
+// Friendly names for login messages.
 function pageLabel(pageName) {
   const labels = {
     home: 'Home',
@@ -63,48 +65,56 @@ function pageLabel(pageName) {
   return labels[pageName] || 'this section';
 }
 
-// Theme preference is session-only.
-// Refreshing the page returns the theme to light mode.
-const themeToggle = document.getElementById('theme-toggle');
+// Set up interactions after the HTML has loaded.
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme toggle.
+  const themeToggle = document.getElementById('theme-toggle');
 
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
 
-    const darkModeEnabled = document.body.classList.contains('dark');
+      const darkModeEnabled =
+        document.body.classList.contains('dark');
 
-    themeToggle.textContent = darkModeEnabled ? '☀️' : '🌙';
+      themeToggle.textContent = darkModeEnabled ? '☀️' : '🌙';
 
-    themeToggle.setAttribute(
-      'aria-label',
-      darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
-    );
+      themeToggle.setAttribute(
+        'aria-label',
+        darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
+      );
 
-    themeToggle.setAttribute(
-      'title',
-      darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
-    );
-  });
-}
+      themeToggle.setAttribute(
+        'title',
+        darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    });
+  }
 
-// Demo sign-in only. No credentials are sent, checked, or saved.
-const loginForm = document.getElementById('login-form');
+  // Demo login form.
+  const loginForm = document.getElementById('login-form');
 
-if (loginForm) {
-  loginForm.addEventListener('submit', event => {
-    event.preventDefault();
+  if (loginForm) {
+    loginForm.addEventListener('submit', event => {
+      event.preventDefault();
 
-    // This only simulates signing in in the current page session.
-    loggedIn = true;
+      // Check the browser's required email and password fields.
+      if (!loginForm.reportValidity()) {
+        return;
+      }
 
-    const message = document.getElementById('login-message');
+      // Simulate signing in for this page session only.
+      loggedIn = true;
 
-    if (message) {
-      message.textContent =
-        'You are signed in for this preview. Real account authentication is not connected.';
-    }
+      const message = document.getElementById('login-message');
 
-    //  Return to the section the visitor wanted to continue to.
-    showPage(pageAfterLogin || 'home');
-  });
-}
+      if (message) {
+        message.textContent =
+          'You are signed in for this preview. Real account authentication is not connected.';
+      }
+
+      // Return to the selected section.
+      showPage(pageAfterLogin || 'home');
+    });
+  }
+});
