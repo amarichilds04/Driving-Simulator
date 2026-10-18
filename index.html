@@ -22,7 +22,7 @@
                 <a href="#" onclick="showPage('gameplay'); return false;">Game</a>
                 <a href="#" onclick="showPage('quiz'); return false;">Quiz</a>
                 <a href="#" onclick="showPage('results'); return false;">Results</a>
-                <a href="#" onclick="showPage('login'); return false;">Login</a>
+                <a href="#" onclick="openAccountPage(); return false;" id="account-nav-link">Sign In / Sign Up</a>
             </nav>
 
             <button type="button" class="theme-toggle" id="theme-toggle"
@@ -107,25 +107,41 @@
             <div class="page-heading">
                 <p class="eyebrow">PRACTICE AREA</p>
                 <h1>Practice</h1>
-                <p>Questions you get wrong will be saved here for review along with other study content.</p>
+                <p>Use these flashcards to review driving rules. You can study without creating an account.</p>
             </div>
 
             <section class="panel">
                 <div class="panel-heading">
-                    <h2>Questions to Practice</h2>
-                    <span class="status-label" id="missed-count">0 questions</span>
+                    <h2>Driving Flashcards</h2>
+                    <span class="status-label" id="flashcard-count">Card 1 of 6</span>
                 </div>
-
-                <p>
-                    Review these questions and try the quiz again to improve
-                    your score. Questions disappear from this list when you
-                    answer them correctly.
-                </p>
-
-                <div id="missed-questions">
-                    <p>You do not have any missed questions yet.</p>
+                <p>Click a card to turn it over and check your answer.</p>
+                <button type="button" class="flashcard" id="flashcard" aria-label="Flashcard. Click to reveal answer" aria-pressed="false">
+                    <span class="flashcard-inner" id="flashcard-inner">
+                        <span class="flashcard-face flashcard-front">
+                            <span class="flashcard-side">QUESTION</span>
+                            <span class="flashcard-text" id="flashcard-question">What does a red traffic light mean?</span>
+                            <span class="flashcard-hint">Click to flip</span>
+                        </span>
+                        <span class="flashcard-face flashcard-back">
+                            <span class="flashcard-side">ANSWER</span>
+                            <span class="flashcard-text" id="flashcard-answer">Come to a complete stop.</span>
+                            <span class="flashcard-hint">Click to see question</span>
+                        </span>
+                    </span>
+                </button>
+                <div class="panel-actions flashcard-controls">
+                    <button type="button" class="btn btn-secondary" id="previous-card">Previous</button>
+                    <button type="button" class="btn btn-secondary" id="next-card">Next</button>
                 </div>
-
+                <div class="panel missed-review-panel">
+                    <div class="panel-heading">
+                        <h2>Questions to Review</h2>
+                        <span class="status-label" id="missed-count">0 questions</span>
+                    </div>
+                    <p>Questions you miss on a quiz will appear here when you sign in and save your progress.</p>
+                    <div id="missed-questions"><p>No saved missed questions yet.</p></div>
+                </div>
                 <div class="panel-actions">
                     <button class="btn btn-primary"
                         onclick="continueTo('quiz')">Start a Quiz</button>
@@ -137,7 +153,7 @@
             <div class="page-heading">
                 <p class="eyebrow">INTERACTIVE EXPERIENCE</p>
                 <h1>Driving Game</h1>
-                <p>The driving game can be added to this area later.</p>
+                <p>This simple preview lets you try the game area. You do not need an account to play.</p>
             </div>
 
             <section class="panel">
@@ -156,7 +172,8 @@
                 </p>
 
                 <div class="panel-actions">
-                    <button class="btn btn-primary"
+                    <button type="button" class="btn btn-primary" id="finish-game">Finish Game</button>
+                    <button class="btn btn-secondary"
                         onclick="showPage('game')">Back to Practice</button>
                 </div>
             </section>
@@ -188,6 +205,15 @@
 
                     <button type="button" class="btn btn-secondary"
                         onclick="showPage('game')">Review Practice</button>
+                </div>
+                <div class="save-prompt" id="save-score-prompt" hidden>
+                    <h2>Want to improve your score?</h2>
+                    <p>If you would like your score to be saved and want to improve your score and see what you missed, please create an account or sign in. You can also keep practicing without an account.</p>
+                    <div class="panel-actions">
+                        <button type="button" class="btn btn-primary" onclick="openAccountPage('signup')">Create Account</button>
+                        <button type="button" class="btn btn-secondary" onclick="openAccountPage('signin')">Sign In</button>
+                        <button type="button" class="text-button" id="skip-save-prompt">No thanks, keep practicing</button>
+                    </div>
                 </div>
             </section>
         </section>
@@ -238,38 +264,34 @@
             <div class="login-layout">
                 <div class="login-intro">
                     <p class="eyebrow">WELCOME TO ROADREADY</p>
-                    <h1>Ready to get back on the road?</h1>
-                    <p>Sign in to continue to the section you selected.</p>
+                    <h1>Save your progress when you're ready.</h1>
+                    <p>You can practice and take quizzes without an account. Sign in or create an account only if you want to save scores and review missed questions.</p>
                     <div class="login-road">🚗　🛣️</div>
                 </div>
-
                 <div class="login-card">
-                    <h2>Welcome back</h2>
-                    <p>Logging in helps save your progress!</p>
-
+                    <div class="account-tabs">
+                        <button type="button" class="account-tab active" id="show-signin">Sign In</button>
+                        <button type="button" class="account-tab" id="show-signup">Sign Up</button>
+                    </div>
+                    <h2 id="account-title">Welcome back</h2>
+                    <p id="account-description">Sign in to save your quiz scores and missed questions.</p>
                     <form id="login-form">
+                        <div class="form-group" id="name-field" hidden>
+                            <label for="account-name">Name</label>
+                            <input type="text" id="account-name" name="name" placeholder="Your name" autocomplete="name">
+                        </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" id="email" name="email"
-                                placeholder="you@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
                         </div>
-
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" name="password"
-                                placeholder="Enter your password" required>
+                            <input type="password" id="password" name="password" placeholder="At least 6 characters" minlength="6" autocomplete="current-password" required>
                         </div>
-
-                        <button type="submit" class="btn btn-primary login-submit">
-                            Sign In
-                        </button>
+                        <button type="submit" class="btn btn-primary login-submit" id="account-submit">Sign In</button>
                     </form>
-
-                    <p id="login-message" role="status"></p>
-
-                    <p class="login-disclaimer">
-                        This does not check or save real account details.
-                    </p>
+                    <p id="login-message" role="status" aria-live="polite"></p>                    
+                    <button type="button" class="text-button" onclick="showPage('home')">Continue without an account</button>
                 </div>
             </div>
         </section>
@@ -280,7 +302,7 @@
             <a href="#" class="footer-brand"
                 onclick="showPage('home'); return false;">🚗 RoadReady</a>
             <p>Built to make driving practice easier to navigate.</p>
-            <p class="footer-note">© 2026 RoadReady. Frontend prototype.</p>
+            <p class="footer-note">© 2026 RoadReady.</p>
         </div>
     </footer>
 </body>
