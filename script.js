@@ -1,4 +1,10 @@
 let loggedIn = false;
+let currentAccount = null;
+let accountMode = 'signin';
+let scorePromptShown = false;
+let currentCardIndex = 0;
+let cardIsFlipped = false;
+let lastQuizScore = null;
 let pageAfterLogin = 'home';
 let currentQuestion = null;
 let lastQuestionId = null;
@@ -47,6 +53,83 @@ const questionBank = [
     }
 ];
 
+
+const flashcards = [
+    { question: 'What does a red traffic light mean?', answer: 'Come to a complete stop.' },
+    { question: 'What should you do before driving?', answer: 'Fasten your seat belt and adjust your mirrors.' },
+    { question: 'What should you do at a stop sign?', answer: 'Stop completely and check for other road users.' },
+    { question: 'What does a solid yellow line usually mean?', answer: 'Do not pass when the line is on your side.' },
+    { question: 'What should you do when an emergency vehicle approaches?', answer: 'Safely move over and give it room to pass.' },
+    { question: 'Why should you leave space behind another car?', answer: 'It gives you time to react and stop safely.' }
+];
+
+function showFlashcard() {
+    const card = flashcards[currentCardIndex];
+    const cardElement = document.getElementById('flashcard');
+    document.getElementById('flashcard-count').textContent =
+        'Card ' + (currentCardIndex + 1) + ' of ' + flashcards.length;
+    document.getElementById('flashcard-question').textContent = card.question;
+    document.getElementById('flashcard-answer').textContent = card.answer;
+    cardElement.classList.toggle('flipped', cardIsFlipped);
+    cardElement.setAttribute('aria-pressed', String(cardIsFlipped));
+}
+
+function flipFlashcard() {
+    cardIsFlipped = !cardIsFlipped;
+    showFlashcard();
+}
+
+function setAccountMode(mode) {
+    accountMode = mode;
+    const signingUp = mode === 'signup';
+    document.getElementById('name-field').hidden = !signingUp;
+    document.getElementById('account-name').required = signingUp;
+    document.getElementById('account-title').textContent = signingUp ? 'Create your account' : 'Welcome back';
+    document.getElementById('account-description').textContent = signingUp
+        ? 'Create an account to save scores and review missed questions.'
+        : 'Sign in to save your quiz scores and missed questions.';
+    document.getElementById('account-submit').textContent = signingUp ? 'Create Account' : 'Sign In';
+    document.getElementById('password').autocomplete = signingUp ? 'new-password' : 'current-password';
+    document.getElementById('show-signin').classList.toggle('active', !signingUp);
+    document.getElementById('show-signup').classList.toggle('active', signingUp);
+    document.getElementById('login-message').textContent = '';
+}
+
+function openAccountPage(mode) {
+    pageAfterLogin = 'results';
+    setAccountMode(mode || 'signin');
+    showPage('login');
+}
+
+function getAccounts() {
+    try {
+        return JSON.parse(localStorage.getItem('roadReadyAccounts')) || {};
+    } catch (error) {
+        return {};
+    }
+}
+
+function saveAccountProgress() {
+    if (!currentAccount) return;
+    const accounts = getAccounts();
+    if (!accounts[currentAccount]) return;
+    accounts[currentAccount].scores = accounts[currentAccount].scores || [];
+    if (lastQuizScore !== null) {
+        accounts[currentAccount].scores.push({ score: lastQuizScore, completed: totalAnswered, date: new Date().toLocaleDateString() });
+    }
+    accounts[currentAccount].missed = getMissedQuestions();
+    localStorage.setItem('roadReadyAccounts', JSON.stringify(accounts));
+}
+
+function showSavePrompt() {
+    if (scorePromptShown) return;
+    scorePromptShown = true;
+    if (!loggedIn) {
+        document.getElementById('save-score-prompt').hidden = false;
+    } else {
+        saveAccountProgress();
+    }
+}
 
 function getMissedQuestions() {
     try {
@@ -241,6 +324,16 @@ function updateResults() {
     document.getElementById('result-completed').textContent = totalAnswered;
     document.getElementById('result-missed').textContent =
         getMissedQuestions().length;
+    const savedSummary = document.getElementById('saved-score-summary');
+    if (savedSummary) {
+        if (currentAccount) {
+            const account = getAccounts()[currentAccount];
+            const scores = account && account.scores ? account.scores : [];
+            savedSummary.textContent = scores.length ? 'Saved attempts: ' + scores.map(function(item) { return item.score + '% (' + item.date + ')'; }).join(', ') : 'No saved quiz attempts yet.';
+        } else {
+            savedSummary.textContent = 'Sign in if you want to save and compare your scores.';
+        }
+    }
 }
 
 
@@ -306,6 +399,12 @@ function checkAnswer() {
 
     renderMissedQuestions();
     updateResults();
+    lastQuizScore = totalAnswered === 0 ? 0 : Math.round((totalCorrect / totalAnswered) * 100);
+    if (loggedIn) {
+        saveAccountProgress();
+    } else {
+        showSavePrompt();
+    }
 }
 
 
@@ -335,12 +434,6 @@ function showPage(pageName) {
         return;
     }
     
-    const protectedPages = ['game', 'gameplay', 'quiz', 'results'];
-
-    if (protectedPages.includes(pageName) && !loggedIn) {
-        pageAfterLogin = pageName;
-        pageName = 'login';
-    }
 
     document.querySelectorAll('.page').forEach(function(page) {
         page.classList.remove('active');
@@ -410,19 +503,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login-form');
     const loginMessage = document.getElementById('login-message');
 
+    document.getElementById('show-signin').addEventListener('click', function() {
+        setAccountMode('signin');
+    });
+    document.getElementById('show-signup').addEventListener('click', function() {
+        setAccountMode('signup');
+    });
+    document.getElementById('flashcard').addEventListener('click', flipFlashcard);
+    document.getElementById('previous-card').addEventListener('click', function() {
+        currentCardIndex = (currentCardIndex - 1 + flashcards.length) % flashcards.length;
+        cardIsFlipped = false;
+        showFlashcard();
+    });
+    document.getElementById('next-card').addEventListener('click', function() {
+        currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+        cardIsFlipped = false;
+        showFlashcard();
+    });
+    document.getElementById('skip-save-prompt').addEventListener('click', function() {
+        document.getElementById('save-score-prompt').hidden = true;
+    });
+    document.getElementById('finish-game').addEventListener('click', function() {
+        lastQuizScore = totalAnswered === 0 ? 0 : Math.round((totalCorrect / totalAnswered) * 100);
+        showSavePrompt();
+        if (loggedIn) {
+            document.getElementById('quiz-feedback').textContent = 'Your progress has been saved in this browser.';
+        }
+    });
+
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
+        if (!loginForm.reportValidity()) return;
 
-        if (!loginForm.reportValidity()) {
-            return;
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const password = document.getElementById('password').value;
+        const name = document.getElementById('account-name').value.trim();
+        const accounts = getAccounts();
+
+        if (accountMode === 'signup') {
+            if (accounts[email]) {
+                loginMessage.textContent = 'An account with that email already exists. Please sign in.';
+                return;
+            }
+            accounts[email] = { name: name, password: password, scores: [], missed: [] };
+            localStorage.setItem('roadReadyAccounts', JSON.stringify(accounts));
+        } else {
+            if (!accounts[email] || accounts[email].password !== password) {
+                loginMessage.textContent = 'Email or password not found. Check your details or create an account.';
+                return;
+            }
         }
 
+        currentAccount = email;
         loggedIn = true;
-        loginMessage.textContent = 'Login successful! Opening your page...';
-
-        showPage(pageAfterLogin);
+        const account = getAccounts()[email];
+        if (account.missed) {
+            localStorage.setItem('roadReadyMissed', JSON.stringify(account.missed));
+        }
+        if (lastQuizScore !== null) saveAccountProgress();
+        document.getElementById('account-nav-link').textContent = account.name ? account.name : 'My Account';
+        document.getElementById('save-score-prompt').hidden = true;
+        loginMessage.textContent = accountMode === 'signup' ? 'Account created! Your progress can now be saved in this browser.' : 'Signed in! Your saved progress is ready.';
+        updateResults();
+        renderMissedQuestions();
+        showPage('results');
     });
 
     renderMissedQuestions();
     updateResults();
+    showFlashcard();
 });

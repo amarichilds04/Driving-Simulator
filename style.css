@@ -613,6 +613,8 @@ body.dark .tip-box h3 {
 }
 
 .form-group input {
+    box-sizing: border-box;
+    display: block;
     width: 100%;
     padding: 12px;
     border: 1px solid var(--border);
@@ -722,4 +724,90 @@ body.dark .tip-box h3 {
     .login-card {
         padding: 18px;
     }
+}
+
+
+/* Flashcards and account options */
+.flashcard {
+    width: 100%;
+    min-height: 230px;
+    margin: 16px 0;
+    padding: 0;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text);
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.flashcard-inner {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 230px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-face {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    min-height: 230px;
+    padding: 28px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.flashcard-front {
+    transform: rotateY(0deg);
+}
+
+.flashcard-back {
+    background: var(--green-bg);
+    transform: rotateY(180deg);
+}
+
+/* Keep hover effects off the 3D element so both faces hide correctly. */
+.flashcard:hover .flashcard-face {
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+.flashcard-side { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.12em; color: var(--primary); }
+.flashcard-text { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: bold; max-width: 650px; }
+.flashcard-hint { font-size: 0.9rem; color: var(--muted); }
+.flashcard-controls { justify-content: center; }
+.missed-review-panel { margin-top: 28px; }
+.save-prompt { margin-top: 24px; padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--background); }
+.save-prompt h2 { margin-top: 0; }
+.save-prompt[hidden] { display: none; }
+.account-tabs { display: flex; gap: 8px; margin-bottom: 22px; }
+.account-tab { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--background); color: var(--text); cursor: pointer; }
+.account-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+.saved-score-summary { padding: 12px; background: var(--background); border-radius: 8px; }
+#name-field[hidden] { display: none; }
+
+@media (max-width: 600px) {
+    .flashcard, .flashcard-inner, .flashcard-face { min-height: 200px; }
+    .flashcard-face { padding: 20px; }
+    .flashcard-controls { flex-wrap: wrap; }
 }
