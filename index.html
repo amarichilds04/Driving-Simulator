@@ -103,39 +103,78 @@
             </section>
         </section>
 
-        <section class="page" id="game">
-            <div class="page-heading">
-                <p class="eyebrow">PRACTICE AREA</p>
-                <h1>Practice</h1>
-                <p>Use these flashcards to review driving rules. You can study without creating an account.</p>
-            </div>
+       
+<section class="page" id="game">
+    <div class="page-heading">
+        <p class="eyebrow">PRACTICE AREA</p>
+        <h1>Practice</h1>
+        <p>Use these flashcards to review driving rules. You can study without creating an account.</p>
+    </div>
 
-            <section class="panel">
-                <div class="panel-heading">
-                    <h2>Driving Flashcards</h2>
-                    <span class="status-label" id="flashcard-count">Card 1 of 6</span>
-                </div>
-                <p>Click a card to turn it over and check your answer.</p>
-                <button type="button" class="flashcard" id="flashcard" aria-label="Flashcard. Click to reveal answer" aria-pressed="false">
-                    <span class="flashcard-inner" id="flashcard-inner">
-                        <span class="flashcard-face flashcard-front">
-                            <span class="flashcard-side">QUESTION</span>
-                            <span class="flashcard-text" id="flashcard-question">What does a red traffic light mean?</span>
-                            <span class="flashcard-hint">Click to flip</span>
-                        </span>
-                        <span class="flashcard-face flashcard-back">
-                            <span class="flashcard-side">ANSWER</span>
-                            <span class="flashcard-text" id="flashcard-answer">Come to a complete stop.</span>
-                            <span class="flashcard-hint">Click to see question</span>
-                        </span>
+    <section class="panel">
+        <div class="panel-heading">
+            <h2>Driving Flashcards</h2>
+            <span class="status-label" id="flashcard-count">Card 1 of 44</span>
+        </div>
+
+        <p>Review 44 topics to help you prepare for the Missouri Driver's Exam.</p>
+
+        <button
+            type="button"
+            class="flashcard"
+            id="flashcard"
+            aria-label="Driving flashcard. Click to see its definition."
+            aria-pressed="false"
+        >
+            <span class="flashcard-inner" id="flashcard-inner">
+
+                <span class="flashcard-face flashcard-front">
+                    <span class="flashcard-side">TOPIC</span>
+
+                    <span class="flashcard-title" id="flashcard-front-title">
+                        Railroad Crossing Without Gates
                     </span>
-                </button>
-                <div class="panel-actions flashcard-controls">
-                    <button type="button" class="btn btn-secondary" id="previous-card">Previous</button>
-                    <button type="button" class="btn btn-secondary" id="next-card">Next</button>
-                </div>
-                <div class="panel missed-review-panel">
-                    <div class="panel-heading">
+
+                    <span class="flashcard-hint">
+                        Click the card to see the definition
+                    </span>
+                </span>
+
+               
+<span class="flashcard-face flashcard-back">
+    <span class="flashcard-side">DEFINITION</span>
+
+    <span class="flashcard-meaning" id="flashcard-back-meaning">
+        Slow down, look and listen for trains, and yield to any train.
+    </span>
+
+    <img
+        class="road-sign-image"
+        id="flashcard-back-image"
+        src=""
+        alt=""
+        hidden
+    >
+
+    <span class="flashcard-hint">
+        Click the card to see the topic
+    </span>
+</span>
+
+
+        <div class="panel-actions flashcard-controls">
+            <button type="button" class="btn btn-secondary" id="previous-card">
+                Previous
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="next-card">
+                Next
+            </button>
+        </div>
+
+        <div class="panel missed-review-panel">
+            <div class="panel-heading">
+
                         <h2>Questions to Review</h2>
                         <span class="status-label" id="missed-count">0 questions</span>
                     </div>
