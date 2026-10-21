@@ -730,7 +730,7 @@ body.dark .tip-box h3 {
 /* Flashcards and account options */
 .flashcard {
     width: 100%;
-    min-height: 230px;
+    min-height: 330px;
     margin: 16px 0;
     padding: 0;
     border: 0;
@@ -750,8 +750,9 @@ body.dark .tip-box h3 {
     display: block;
     position: relative;
     width: 100%;
-    min-height: 230px;
+    min-height: 330px;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     transition: transform 0.6s ease;
 }
 
@@ -763,8 +764,8 @@ body.dark .tip-box h3 {
     position: absolute;
     inset: 0;
     box-sizing: border-box;
-    min-height: 230px;
-    padding: 28px;
+    min-height: 330px;
+    padding: 24px;
     border: 2px solid var(--border);
     border-radius: 14px;
     background: var(--surface);
@@ -772,10 +773,11 @@ body.dark .tip-box h3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 18px;
+    gap: 12px;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
 }
 
 .flashcard-front {
@@ -787,15 +789,50 @@ body.dark .tip-box h3 {
     transform: rotateY(180deg);
 }
 
-/* Keep hover effects off the 3D element so both faces hide correctly. */
+/* Keep hover effects off the 3D faces so the hidden side stays hidden. */
 .flashcard:hover .flashcard-face {
     box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
 }
 
-.flashcard-side { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.12em; color: var(--primary); }
-.flashcard-text { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: bold; max-width: 650px; }
-.flashcard-hint { font-size: 0.9rem; color: var(--muted); }
-.flashcard-controls { justify-content: center; }
+.road-sign-image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.flashcard-side {
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+}
+
+.flashcard-text {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: bold;
+    max-width: 650px;
+    color: var(--text);
+}
+
+.flashcard-meaning {
+    max-width: 650px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.flashcard-hint {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.flashcard-controls {
+    justify-content: center;
+}
 .missed-review-panel { margin-top: 28px; }
 .save-prompt { margin-top: 24px; padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--background); }
 .save-prompt h2 { margin-top: 0; }
@@ -810,4 +847,23 @@ body.dark .tip-box h3 {
     .flashcard, .flashcard-inner, .flashcard-face { min-height: 200px; }
     .flashcard-face { padding: 20px; }
     .flashcard-controls { flex-wrap: wrap; }
+}
+
+
+@media (max-width: 520px) {
+    .flashcard,
+    .flashcard-inner,
+    .flashcard-face {
+        min-height: 350px;
+    }
+
+    .flashcard-face {
+        padding: 18px;
+    }
+
+    .road-sign-image {
+        width: 105px;
+        height: 105px;
+	
+    }
 }
