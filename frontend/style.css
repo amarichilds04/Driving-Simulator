@@ -613,6 +613,8 @@ body.dark .tip-box h3 {
 }
 
 .form-group input {
+    box-sizing: border-box;
+    display: block;
     width: 100%;
     padding: 12px;
     border: 1px solid var(--border);
@@ -721,5 +723,147 @@ body.dark .tip-box h3 {
     .stat-card,
     .login-card {
         padding: 18px;
+    }
+}
+
+
+/* Flashcards and account options */
+.flashcard {
+    width: 100%;
+    min-height: 330px;
+    margin: 16px 0;
+    padding: 0;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--text);
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.flashcard-inner {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 330px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-face {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    min-height: 330px;
+    padding: 24px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.flashcard-front {
+    transform: rotateY(0deg);
+}
+
+.flashcard-back {
+    background: var(--green-bg);
+    transform: rotateY(180deg);
+}
+
+/* Keep hover effects off the 3D faces so the hidden side stays hidden. */
+.flashcard:hover .flashcard-face {
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+.road-sign-image {
+    display: block;
+    width: 120px;
+    height: 120px;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.flashcard-side {
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+}
+
+.flashcard-text {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: bold;
+    max-width: 650px;
+    color: var(--text);
+}
+
+.flashcard-meaning {
+    max-width: 650px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+.flashcard-hint {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.flashcard-controls {
+    justify-content: center;
+}
+.missed-review-panel { margin-top: 28px; }
+.save-prompt { margin-top: 24px; padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--background); }
+.save-prompt h2 { margin-top: 0; }
+.save-prompt[hidden] { display: none; }
+.account-tabs { display: flex; gap: 8px; margin-bottom: 22px; }
+.account-tab { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--background); color: var(--text); cursor: pointer; }
+.account-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+.saved-score-summary { padding: 12px; background: var(--background); border-radius: 8px; }
+#name-field[hidden] { display: none; }
+
+@media (max-width: 600px) {
+    .flashcard, .flashcard-inner, .flashcard-face { min-height: 200px; }
+    .flashcard-face { padding: 20px; }
+    .flashcard-controls { flex-wrap: wrap; }
+}
+
+
+@media (max-width: 520px) {
+    .flashcard,
+    .flashcard-inner,
+    .flashcard-face {
+        min-height: 350px;
+    }
+
+    .flashcard-face {
+        padding: 18px;
+    }
+
+    .road-sign-image {
+        width: 105px;
+        height: 105px;
+	
     }
 }
